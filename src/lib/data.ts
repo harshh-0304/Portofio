@@ -70,9 +70,9 @@ export const experiences = [
     title: "AI Engineer",
     company: "DubFlix",
     url: "",
-    period: "Jul 2025 – Present",
+    period: "Jul 2025 – Dec 2025",
     type: "Contract",
-    status: "ACTIVE",
+    status: "COMPLETED",
     badge: "AI ENGINEERING",
     stack: ["Python", "NLP", "Speech Synthesis", "AI/ML"],
     responsibilities: [
