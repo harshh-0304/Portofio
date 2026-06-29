@@ -304,3 +304,31 @@
   box-shadow: 0 0 30px rgba(0, 212, 255, 0.1), 0 0 60px rgba(0, 212, 255, 0.05);
   transform: translateY(-2px);
 }
+
+/* ========== MOBILE ========== */
+
+/* Safe area bottom for mobile nav */
+.mobile-safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Tap highlight remove */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Smooth momentum scrolling on iOS */
+body {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

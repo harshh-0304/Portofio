@@ -40,7 +40,7 @@ export default function ExperienceDatabase() {
   const [selected, setSelected] = useState<(typeof experiences)[0] | null>(null);
 
   return (
-    <section className="py-24 px-4">
+    <section className="py-16 md:py-24 px-4">
       <div className="max-w-5xl mx-auto">
         {/* Section header */}
         <motion.div
@@ -86,7 +86,7 @@ export default function ExperienceDatabase() {
                   {/* Timeline dot */}
                   <div className="absolute left-0 top-5 flex items-center justify-center">
                     <motion.div
-                      className="w-10 h-10 rounded-full flex items-center justify-center"
+                      className="w-9 h-9 rounded-full flex items-center justify-center"
                       style={{
                         background: isActive
                           ? "rgba(0,255,136,0.1)"
@@ -245,7 +245,7 @@ export default function ExperienceDatabase() {
       <AnimatePresence>
         {selected && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 flex items-end md:items-center justify-center p-0 md:p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -256,7 +256,7 @@ export default function ExperienceDatabase() {
             />
 
             <motion.div
-              className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-xl"
+              className="relative w-full max-w-2xl max-h-[90vh] md:max-h-[85vh] overflow-y-auto rounded-t-2xl md:rounded-xl"
               style={{
                 background: "linear-gradient(135deg, rgba(0,20,40,0.98) 0%, rgba(3,10,14,0.98) 100%)",
                 border: "1px solid rgba(0,212,255,0.25)",

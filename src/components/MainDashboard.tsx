@@ -12,6 +12,8 @@ import CurrentOperations from "./sections/CurrentOperations";
 import GitHubStats from "./sections/GitHubStats";
 import ContactTerminal from "./sections/ContactTerminal";
 import CommandPalette from "./CommandPalette";
+import MobileNav from "./MobileNav";
+
 
 const sections: Record<string, string> = {
   profile: "section-profile",
@@ -44,7 +46,7 @@ export default function MainDashboard() {
 
       {/* Nav bar */}
       <motion.nav
-        className="fixed top-0 left-0 right-0 z-30 flex items-center justify-between px-6 py-3"
+        className="fixed top-0 left-0 right-0 z-30 hidden md:flex items-center justify-between px-6 py-3"
         style={{
           background: "linear-gradient(180deg, rgba(3,10,14,0.97) 0%, rgba(3,10,14,0) 100%)",
           borderBottom: "1px solid rgba(0,212,255,0.06)",
@@ -103,7 +105,7 @@ export default function MainDashboard() {
       </motion.nav>
 
       {/* Main content */}
-      <main className="relative z-10">
+      <main className="relative z-10 pb-20 md:pb-0">
         <div id="section-profile">
           <HeroProfile />
         </div>
@@ -135,6 +137,9 @@ export default function MainDashboard() {
 
       {/* Command palette */}
       <CommandPalette onNavigate={scrollTo} />
+
+      {/* Mobile bottom navigation */}
+      <MobileNav />
     </motion.div>
   );
 }

@@ -86,7 +86,7 @@ export default function ContactTerminal() {
   };
 
   return (
-    <section className="py-24 px-4">
+    <section className="py-16 md:py-24 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Section header */}
         <motion.div
@@ -112,9 +112,69 @@ export default function ContactTerminal() {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Contact cards */}
+          {/* ── MOBILE: large touch buttons (md:hidden) ── */}
+          <div className="md:hidden space-y-3">
+            {links.map((link, i) => {
+              const Icon = link.icon;
+              return (
+                <motion.a
+                  key={link.label}
+                  href={link.href}
+                  target={link.download ? undefined : "_blank"}
+                  rel="noopener noreferrer"
+                  download={link.download}
+                  onClick={() => handleCommand(link.command)}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.08 }}
+                  className="flex items-center gap-4 p-5 rounded-2xl w-full min-h-[72px] active:scale-[0.98] transition-transform"
+                  style={{
+                    background: `${link.color}08`,
+                    border: `1px solid ${link.color}30`,
+                  }}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  <div
+                    className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0"
+                    style={{ background: `${link.color}15`, border: `1px solid ${link.color}25` }}
+                  >
+                    <Icon size={26} style={{ color: link.color }} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="font-mono font-bold text-base tracking-wider" style={{ color: link.color }}>
+                      {link.label.toUpperCase()}
+                    </div>
+                    <div className="text-xs font-mono text-cyan-500/40 mt-0.5 truncate">{link.sub}</div>
+                  </div>
+                  <ChevronRight size={20} style={{ color: `${link.color}50` }} />
+                </motion.a>
+              );
+            })}
+
+            {/* Availability banner */}
+            <motion.div
+              className="p-5 rounded-2xl"
+              style={{ background: "rgba(0,255,136,0.05)", border: "1px solid rgba(0,255,136,0.22)" }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              animate={{ boxShadow: ["0 0 0px rgba(0,255,136,0)", "0 0 20px rgba(0,255,136,0.1)", "0 0 0px rgba(0,255,136,0)"] }}
+            >
+              <div className="flex items-center gap-3">
+                <motion.div className="w-3 h-3 rounded-full bg-green-400" animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1.5, repeat: Infinity }} />
+                <div>
+                  <div className="text-base font-mono font-bold text-green-400 tracking-wider">AVAILABLE FOR OPPORTUNITIES</div>
+                  <div className="text-xs font-mono text-green-400/40 mt-0.5 tracking-widest">OPEN TO FULL-TIME / CONTRACT ROLES</div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* ── DESKTOP: contact cards ── */}
           <motion.div
-            className="space-y-4"
+            className="hidden md:block space-y-4"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -235,9 +295,9 @@ export default function ContactTerminal() {
             </motion.div>
           </motion.div>
 
-          {/* Terminal */}
+          {/* Terminal — desktop only */}
           <motion.div
-            className="rounded-xl overflow-hidden"
+            className="hidden md:block rounded-xl overflow-hidden"
             style={{
               background: "rgba(0,0,0,0.7)",
               border: "1px solid rgba(0,212,255,0.2)",

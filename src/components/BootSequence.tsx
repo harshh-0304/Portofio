@@ -87,7 +87,107 @@ export default function BootSequence({ onComplete }: Props) {
             }}
           />
 
-          <div className="relative z-10 w-full max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          {/* ── MOBILE boot layout ── */}
+          <div className="md:hidden relative z-10 w-full flex flex-col items-center px-6">
+            {/* Wordmark */}
+            <motion.div
+              className="flex items-center gap-2 mb-10"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <div
+                className="w-10 h-10 rounded-lg flex items-center justify-center font-mono text-base font-bold text-cyan-400"
+                style={{
+                  background: "rgba(0,212,255,0.1)",
+                  border: "1px solid rgba(0,212,255,0.35)",
+                  boxShadow: "0 0 20px rgba(0,212,255,0.2)",
+                }}
+              >
+                H
+              </div>
+              <span className="font-mono text-sm text-cyan-400/50 tracking-[0.3em]">HARSH.OS</span>
+            </motion.div>
+
+            {/* Boot lines */}
+            <div className="w-full font-mono text-xs space-y-2 mb-8 min-h-[140px]">
+              {!scanComplete && (
+                <motion.div
+                  className="text-cyan-400/40 tracking-widest"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                >
+                  {">"}  VERIFYING IDENTITY...
+                </motion.div>
+              )}
+              {bootLines.map((line, i) =>
+                visibleLines.includes(i) ? (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -6 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className={
+                      i === bootLines.length - 1
+                        ? "neon-green font-bold tracking-widest"
+                        : i === bootLines.length - 2
+                        ? "text-cyan-300 tracking-widest"
+                        : "text-cyan-500/55"
+                    }
+                  >
+                    <span className="text-cyan-500/25 mr-2">{i < bootLines.length - 2 ? ">" : "✓"}</span>
+                    {line.text}
+                    {i === visibleLines[visibleLines.length - 1] && phase === "booting" && (
+                      <span className="inline-block w-1.5 h-[1em] bg-cyan-400 ml-1 align-middle animate-pulse" />
+                    )}
+                  </motion.div>
+                ) : null
+              )}
+            </div>
+
+            {/* Progress bar */}
+            <div className="w-full mb-2">
+              <div className="flex justify-between text-[10px] font-mono text-cyan-500/35 mb-1.5 tracking-widest">
+                <span>SYSTEM LOAD</span>
+                <span>{progress}%</span>
+              </div>
+              <div className="h-1 rounded-full overflow-hidden" style={{ background: "rgba(0,212,255,0.08)", border: "1px solid rgba(0,212,255,0.1)" }}>
+                <motion.div
+                  className="h-full rounded-full"
+                  style={{ background: "linear-gradient(90deg, #00D4FF, #00FF88)", boxShadow: "0 0 10px rgba(0,212,255,0.5)" }}
+                  initial={{ width: "0%" }}
+                  animate={{ width: `${progress}%` }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                />
+              </div>
+            </div>
+
+            {/* Identity confirm */}
+            {scanComplete && (
+              <motion.div
+                className="text-[10px] font-mono text-green-400/60 tracking-widest mt-3"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              >
+                ✓ IDENTITY CONFIRMED — HARSH JADAV
+              </motion.div>
+            )}
+
+            {/* Skip */}
+            <motion.button
+              onClick={handleSkip}
+              className="mt-8 text-[10px] font-mono text-cyan-500/20 hover:text-cyan-500/50 transition-colors tracking-widest"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.5 }}
+            >
+              [ TAP TO SKIP ]
+            </motion.button>
+          </div>
+
+          {/* ── DESKTOP boot layout ── */}
+          <div className="hidden md:block relative z-10 w-full max-w-5xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
 
             {/* LEFT — Photo scanner */}
             <div className="flex flex-col items-center">
@@ -374,16 +474,18 @@ export default function BootSequence({ onComplete }: Props) {
               </motion.button>
             </div>
           </div>
+          </div>{/* end desktop inner grid */}
+          </div>{/* end desktop wrapper */}
 
-          {/* Corner decorations */}
-          <div className="absolute top-5 left-5 w-8 h-8 corner-tl pointer-events-none" />
-          <div className="absolute top-5 right-5 w-8 h-8 corner-tr pointer-events-none" />
-          <div className="absolute bottom-5 left-5 w-8 h-8 corner-bl pointer-events-none" />
-          <div className="absolute bottom-5 right-5 w-8 h-8 corner-br pointer-events-none" />
+          {/* Corner decorations — desktop only */}
+          <div className="hidden md:block absolute top-5 left-5 w-8 h-8 corner-tl pointer-events-none" />
+          <div className="hidden md:block absolute top-5 right-5 w-8 h-8 corner-tr pointer-events-none" />
+          <div className="hidden md:block absolute bottom-5 left-5 w-8 h-8 corner-bl pointer-events-none" />
+          <div className="hidden md:block absolute bottom-5 right-5 w-8 h-8 corner-br pointer-events-none" />
 
-          {/* Bottom info strip */}
+          {/* Bottom info strip — desktop only */}
           <motion.div
-            className="absolute bottom-8 left-0 right-0 flex justify-center gap-8 text-xs font-mono text-cyan-500/20 tracking-widest"
+            className="hidden md:flex absolute bottom-8 left-0 right-0 justify-center gap-8 text-xs font-mono text-cyan-500/20 tracking-widest"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}

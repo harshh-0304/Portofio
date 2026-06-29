@@ -59,7 +59,7 @@ export default function ProjectArchive() {
   const visibleOthers = showAll ? others : others.slice(0, 2);
 
   return (
-    <section className="py-24 px-4">
+    <section className="py-16 md:py-24 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Section header */}
         <motion.div
@@ -163,7 +163,7 @@ export default function ProjectArchive() {
       <AnimatePresence>
         {selected && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 flex items-end md:items-center justify-center p-0 md:p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -174,7 +174,7 @@ export default function ProjectArchive() {
             />
 
             <motion.div
-              className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-xl"
+              className="relative w-full max-w-2xl max-h-[90vh] md:max-h-[85vh] overflow-y-auto rounded-t-2xl md:rounded-xl"
               style={{
                 background:
                   "linear-gradient(135deg, rgba(0,20,40,0.98) 0%, rgba(3,10,14,0.98) 100%)",
@@ -436,7 +436,7 @@ function ProjectCard({
         </div>
 
         {!compact && (
-          <p className="text-sm text-cyan-100/60 leading-relaxed mb-3 line-clamp-2">
+          <p className="text-sm text-cyan-100/60 leading-relaxed mb-3 md:line-clamp-2">
             {project.description}
           </p>
         )}
