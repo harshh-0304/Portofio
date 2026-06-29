@@ -474,8 +474,7 @@ export default function BootSequence({ onComplete }: Props) {
               </motion.button>
             </div>
           </div>
-          </div>{/* end desktop inner grid */}
-          </div>{/* end desktop wrapper */}
+          </div>
 
           {/* Corner decorations — desktop only */}
           <div className="hidden md:block absolute top-5 left-5 w-8 h-8 corner-tl pointer-events-none" />
