@@ -42,21 +42,26 @@ export default function BootSequence({ onComplete }: Props) {
       );
     });
 
-    // Complete after last line + 0.8s pause
+    // Complete after last line + 0.6s pause
     timers.push(
       setTimeout(() => {
         setPhase("complete");
       }, bootLines[bootLines.length - 1].delay + 600)
     );
 
-    timers.push(
-      setTimeout(() => {
-        onComplete();
-      }, bootLines[bootLines.length - 1].delay + 1400)
-    );
-
     return () => timers.forEach(clearTimeout);
+  }, [phase, skipped]);
+
+  useEffect(() => {
+    if (phase !== "complete" || skipped) return;
+
+    const timer = setTimeout(() => {
+      onComplete();
+    }, 800);
+
+    return () => clearTimeout(timer);
   }, [phase, onComplete, skipped]);
+
 
   const handleSkip = () => {
     setSkipped(true);
