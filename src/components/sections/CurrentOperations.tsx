@@ -188,10 +188,10 @@ export default function CurrentOperations() {
           </div>
           <div className="space-y-3">
             {[
-              { time: "NOW", action: "Building AI agents with LangGraph", type: "BUILD" },
-              { time: "TODAY", action: "Researching Advanced System Design patterns", type: "LEARN" },
-              { time: "THIS WEEK", action: "Deployed backend microservices to AWS", type: "DEPLOY" },
-              { time: "ONGOING", action: "Seeking Software Engineering opportunities", type: "SEEK" },
+              { time: "NOW", action: "Working on Betorra gaming platform backend", type: "BUILD" },
+              { time: "TODAY", action: "Reading up on System Design concepts", type: "LEARN" },
+              { time: "THIS WEEK", action: "Refining portfolio and project write-ups", type: "UPDATE" },
+              { time: "ONGOING", action: "Open to Backend / Full-Stack opportunities", type: "SEEK" },
             ].map((log, i) => (
               <motion.div
                 key={i}
