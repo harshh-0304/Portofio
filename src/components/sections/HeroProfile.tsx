@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { MapPin, Zap, ChevronRight, ExternalLink, Download, Mail } from "lucide-react";
+import { MapPin, ChevronRight, ExternalLink, Download, Mail } from "lucide-react";
 import { profile, experiences, projects, skills } from "@/lib/data";
 
 export default function HeroProfile() {
@@ -14,180 +14,147 @@ export default function HeroProfile() {
 
       {/* ══════════════════════════════════════════════
           MOBILE HERO — lg:hidden
-          Premium native-app feel, recruiter-optimised
+          Restrained, handcrafted — Linear/Arc feel
           Target: 390×844 (iPhone 13/14/15)
       ══════════════════════════════════════════════ */}
-      <div className="lg:hidden min-h-screen flex flex-col px-5 pt-20 pb-28">
+      <div className="lg:hidden min-h-screen flex flex-col px-5 pt-16 pb-28">
 
-        {/* Status badge */}
+        {/* Photo + name row */}
         <motion.div
-          className="flex items-center gap-2 mb-7 self-center px-3 py-1.5 rounded-full font-mono text-xs tracking-widest"
-          style={{ background: "rgba(0,212,255,0.06)", border: "1px solid rgba(0,212,255,0.18)", color: "#00D4FF" }}
-          initial={{ opacity: 0, y: -8 }}
+          className="flex items-center gap-4 mb-6"
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
+          transition={{ delay: 0.1, duration: 0.5 }}
         >
-          <motion.span
-            className="w-1.5 h-1.5 rounded-full bg-green-400 inline-block"
-            animate={{ opacity: [1, 0.3, 1] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          />
-          ENGINEER PROFILE · ACTIVE
-        </motion.div>
-
-        {/* Photo */}
-        <motion.div
-          className="flex flex-col items-center mb-6"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-        >
-          <div className="relative">
-            <motion.div
-              className="absolute inset-0 rounded-full scale-110"
-              style={{ border: "1px solid rgba(0,212,255,0.3)", boxShadow: "0 0 24px rgba(0,212,255,0.15)" }}
-              animate={{ opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 3, repeat: Infinity }}
-            />
-            <div className="relative w-24 h-24 rounded-full overflow-hidden" style={{ border: "2px solid rgba(0,212,255,0.4)" }}>
+          {/* Avatar — clean, no spinning rings */}
+          <div className="relative shrink-0">
+            <div className="w-16 h-16 rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(0,212,255,0.2)" }}>
               <Image src={profile.avatar} alt="Harsh Jadav" fill className="object-cover" priority />
-              <div className="absolute inset-0" style={{ background: "rgba(0,212,255,0.04)" }} />
             </div>
-            <motion.div
-              className="absolute bottom-0.5 right-0.5 w-4 h-4 rounded-full bg-green-400 border-2 border-[#030A0E]"
-              style={{ boxShadow: "0 0 8px rgba(0,255,136,0.8)" }}
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
+            {/* Online dot — static, no pulse */}
+            <div
+              className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-green-400 border-2 border-[#030A0E]"
             />
           </div>
-        </motion.div>
 
-        {/* Name + Role + Location */}
-        <motion.div
-          className="text-center mb-5"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-        >
-          <h1 className="text-[2rem] font-bold font-mono neon-cyan tracking-tight leading-none mb-2">
-            {profile.name}
-          </h1>
-          <div className="text-base font-mono text-cyan-400/70 mb-2">
-            <span className="text-cyan-500/30">// </span>{profile.role}
-          </div>
-          <div className="flex items-center justify-center gap-1.5 text-xs font-mono text-cyan-500/40">
-            <MapPin size={11} />{profile.location}
+          {/* Name + role */}
+          <div className="flex-1 min-w-0">
+            <h1 className="text-[1.6rem] font-bold font-mono neon-cyan tracking-tight leading-none mb-1">
+              {profile.name}
+            </h1>
+            <div className="text-sm text-white/50 font-mono">
+              {profile.role}
+            </div>
+            <div className="flex items-center gap-1 text-xs text-white/30 mt-1">
+              <MapPin size={10} />{profile.location}
+            </div>
           </div>
         </motion.div>
 
-        {/* Availability pill */}
+        {/* Availability — single clean pill, no animation */}
         <motion.div
-          className="self-center flex items-center gap-2.5 px-5 py-2.5 rounded-full mb-7"
-          style={{ background: "rgba(0,255,136,0.06)", border: "1px solid rgba(0,255,136,0.28)" }}
+          className="flex items-center gap-2 mb-6 self-start"
           initial={{ opacity: 0 }}
-          animate={{
-            opacity: 1,
-            boxShadow: ["0 0 0 rgba(0,255,136,0)", "0 0 18px rgba(0,255,136,0.15)", "0 0 0 rgba(0,255,136,0)"],
-          }}
-          transition={{ delay: 0.4, boxShadow: { duration: 2.5, repeat: Infinity } }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
         >
-          <motion.div
-            className="w-2 h-2 rounded-full bg-green-400"
-            animate={{ opacity: [1, 0.3, 1] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          />
-          <span className="text-sm font-mono font-bold text-green-400 tracking-widest">
-            AVAILABLE FOR OPPORTUNITIES
+          <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
+          <span className="text-xs font-mono text-green-400 tracking-wide">
+            Available for opportunities
           </span>
         </motion.div>
 
-        {/* 2×2 Stats */}
+        {/* About — short, readable */}
+        <motion.p
+          className="text-sm text-white/55 leading-relaxed mb-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.25 }}
+        >
+          Backend Engineer with production experience building scalable REST APIs,
+          transaction processing systems, and multi-provider integrations.
+          Currently at Betorra — NestJS · TypeScript · PostgreSQL · AWS.
+        </motion.p>
+
+        {/* 4 quick stats — horizontal strip */}
         <motion.div
-          className="grid grid-cols-2 gap-3 mb-5"
-          initial={{ opacity: 0, y: 12 }}
+          className="grid grid-cols-4 gap-2 mb-8"
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
+          transition={{ delay: 0.3 }}
         >
           {[
-            { label: "EXPERIENCE", value: "1+ YR", sub: "Production" },
-            { label: "PROJECTS",   value: `${projects.length}+`, sub: "Live & Built" },
-            { label: "TECH STACK", value: `${totalTech}+`, sub: "Core Tools" },
-            { label: "ACTIVE ROLES", value: `${activeRoles}`, sub: "Current" },
+            { value: "1+", label: "Years" },
+            { value: `${projects.length}`, label: "Projects" },
+            { value: `${totalTech}+`, label: "Skills" },
+            { value: `${activeRoles}`, label: "Active" },
           ].map((s) => (
-            <div key={s.label} className="jarvis-panel rounded-2xl p-4 text-center">
-              <div className="text-[10px] font-mono text-cyan-500/35 tracking-widest mb-1">{s.label}</div>
-              <div className="text-2xl font-bold font-mono neon-cyan leading-none">{s.value}</div>
-              <div className="text-[10px] font-mono text-cyan-500/40 mt-1">{s.sub}</div>
+            <div
+              key={s.label}
+              className="flex flex-col items-center py-3 rounded-xl"
+              style={{ background: "rgba(0,212,255,0.04)", border: "1px solid rgba(0,212,255,0.08)" }}
+            >
+              <div className="text-lg font-bold font-mono text-cyan-400 leading-none">{s.value}</div>
+              <div className="text-[10px] text-white/30 mt-1 font-sans">{s.label}</div>
             </div>
           ))}
         </motion.div>
 
-        {/* CTA Buttons 2×2 */}
+        {/* CTA Buttons — 2 primary, 2 secondary */}
         <motion.div
-          className="grid grid-cols-2 gap-3"
-          initial={{ opacity: 0, y: 10 }}
+          className="flex flex-col gap-3"
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
+          transition={{ delay: 0.35 }}
         >
-          <motion.a href={profile.github} target="_blank" rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 py-4 rounded-2xl font-mono text-sm font-bold tracking-wider min-h-[56px]"
-            style={{ background: "rgba(0,212,255,0.09)", border: "1px solid rgba(0,212,255,0.28)", color: "#00D4FF" }}
-            whileTap={{ scale: 0.96 }}>
-            <ChevronRight size={15} />GITHUB
-          </motion.a>
-          <motion.a href={profile.linkedin} target="_blank" rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 py-4 rounded-2xl font-mono text-sm font-bold tracking-wider min-h-[56px]"
-            style={{ background: "rgba(14,165,233,0.07)", border: "1px solid rgba(14,165,233,0.22)", color: "#38bdf8" }}
-            whileTap={{ scale: 0.96 }}>
-            <ExternalLink size={14} />LINKEDIN
-          </motion.a>
-          <motion.a href={profile.resumeUrl} download="Harsh_Jadav_Resume.pdf"
-            className="flex items-center justify-center gap-2 py-4 rounded-2xl font-mono text-sm font-bold tracking-wider min-h-[56px]"
-            style={{ background: "rgba(0,255,136,0.07)", border: "1px solid rgba(0,255,136,0.25)", color: "#00FF88" }}
-            whileTap={{ scale: 0.96 }}>
-            <Download size={14} />RESUME
-          </motion.a>
-          <motion.a href={`mailto:${profile.email}`}
-            className="flex items-center justify-center gap-2 py-4 rounded-2xl font-mono text-sm font-bold tracking-wider min-h-[56px]"
-            style={{ background: "rgba(123,97,255,0.07)", border: "1px solid rgba(123,97,255,0.25)", color: "#7B61FF" }}
-            whileTap={{ scale: 0.96 }}>
-            <Mail size={14} />CONTACT
-          </motion.a>
-        </motion.div>
-
-        {/* About snippet */}
-        <motion.div
-          className="mt-5 jarvis-panel rounded-2xl p-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.75 }}
-        >
-          <div className="flex items-center gap-2 mb-2 text-[10px] font-mono text-cyan-500/35 tracking-widest">
-            <Zap size={10} className="text-cyan-500" />ABOUT
+          {/* Primary row */}
+          <div className="grid grid-cols-2 gap-3">
+            <motion.a
+              href={profile.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 py-3.5 rounded-xl font-mono text-sm font-semibold"
+              style={{ background: "rgba(0,212,255,0.1)", border: "1px solid rgba(0,212,255,0.25)", color: "#00D4FF" }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <ChevronRight size={14} />GitHub
+            </motion.a>
+            <motion.a
+              href={profile.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 py-3.5 rounded-xl font-mono text-sm font-semibold"
+              style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.7)" }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <ExternalLink size={14} />LinkedIn
+            </motion.a>
           </div>
-          <p className="text-xs text-cyan-100/65 leading-relaxed">
-            Backend Engineer with production experience building scalable REST APIs, transaction processing systems, and multi-provider integrations. NestJS · TypeScript · PostgreSQL · AWS.
-          </p>
-        </motion.div>
-
-        {/* Scroll hint */}
-        <motion.div
-          className="mt-8 flex flex-col items-center gap-1.5 self-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-        >
-          <div className="text-[9px] font-mono text-cyan-500/20 tracking-widest">SCROLL TO EXPLORE</div>
-          <motion.div
-            className="w-px h-8 bg-gradient-to-b from-cyan-500/40 to-transparent"
-            animate={{ scaleY: [1, 0.5, 1], opacity: [0.4, 0.8, 0.4] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
+          {/* Secondary row */}
+          <div className="grid grid-cols-2 gap-3">
+            <motion.a
+              href={profile.resumeUrl}
+              download="Harsh_Jadav_Resume.pdf"
+              className="flex items-center justify-center gap-2 py-3 rounded-xl font-mono text-sm"
+              style={{ background: "rgba(0,255,136,0.06)", border: "1px solid rgba(0,255,136,0.18)", color: "#00FF88" }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <Download size={13} />Resume
+            </motion.a>
+            <motion.a
+              href={`mailto:${profile.email}`}
+              className="flex items-center justify-center gap-2 py-3 rounded-xl font-mono text-sm"
+              style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.5)" }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <Mail size={13} />Email
+            </motion.a>
+          </div>
         </motion.div>
       </div>
 
       {/* ══════════════════════════════════════════════
-          DESKTOP HERO — hidden lg:flex (original layout)
+          DESKTOP HERO — hidden lg:flex (original layout, untouched)
       ══════════════════════════════════════════════ */}
       <div className="hidden lg:flex relative min-h-screen items-center px-4 pt-20 pb-10">
         <div className="max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-[280px_1fr_260px] gap-8 items-center">
@@ -245,7 +212,7 @@ export default function HeroProfile() {
               <MapPin size={12} />{profile.location}
             </motion.div>
             <motion.div className="jarvis-panel rounded-xl p-5 mb-7" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.85 }}>
-              <div className="flex items-center gap-2 mb-2.5 text-xs font-mono text-cyan-500/35 tracking-widest"><Zap size={11} className="text-cyan-500" />ABOUT ME</div>
+              <div className="flex items-center gap-2 mb-2.5 text-xs font-mono text-cyan-500/35 tracking-widest">ABOUT ME</div>
               <p className="text-cyan-100/70 leading-relaxed text-sm">{profile.summary}</p>
             </motion.div>
             <motion.div className="flex flex-wrap gap-3" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.95 }}>
