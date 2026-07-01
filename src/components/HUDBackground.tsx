@@ -105,8 +105,8 @@ export default function HUDBackground() {
         style={{ opacity: 0.6 }}
       />
 
-      {/* Grid background — desktop only (animated, expensive on mobile) */}
-      <div className="fixed inset-0 pointer-events-none z-0 hud-grid hidden lg:block" />
+      {/* Grid background (animated) */}
+      <div className="fixed inset-0 pointer-events-none z-0 hud-grid" />
 
       {/* Radial vignette — always, cheap */}
       <div
@@ -130,9 +130,9 @@ export default function HUDBackground() {
       {/* Scan line — desktop only (continuous animation) */}
       <div className="scan-line hidden lg:block" />
 
-      {/* Corner HUD elements — desktop only */}
+      {/* Corner HUD elements */}
       <motion.div
-        className="fixed top-20 left-4 pointer-events-none z-10 hidden lg:block"
+        className="fixed top-20 left-4 pointer-events-none z-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
@@ -145,7 +145,7 @@ export default function HUDBackground() {
       </motion.div>
 
       <motion.div
-        className="fixed top-20 right-4 pointer-events-none z-10 hidden lg:block"
+        className="fixed top-20 right-4 pointer-events-none z-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
@@ -158,7 +158,7 @@ export default function HUDBackground() {
       </motion.div>
 
       <motion.div
-        className="fixed bottom-20 left-4 pointer-events-none z-10 hidden lg:block"
+        className="fixed bottom-20 left-4 pointer-events-none z-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
@@ -171,7 +171,7 @@ export default function HUDBackground() {
       </motion.div>
 
       <motion.div
-        className="fixed bottom-20 right-4 pointer-events-none z-10 hidden lg:block"
+        className="fixed bottom-20 right-4 pointer-events-none z-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
