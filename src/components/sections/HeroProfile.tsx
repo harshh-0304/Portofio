@@ -17,7 +17,13 @@ export default function HeroProfile() {
           Restrained, handcrafted — Linear/Arc feel
           Target: 390×844 (iPhone 13/14/15)
       ══════════════════════════════════════════════ */}
-      <div className="lg:hidden min-h-screen flex flex-col px-5 pt-16 pb-28">
+      <div
+        className="lg:hidden min-h-screen flex flex-col px-5"
+        style={{
+          paddingTop: "calc(env(safe-area-inset-top, 0px) + 16px)",
+          paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 80px)",
+        }}
+      >
 
         {/* Photo + name row */}
         <motion.div
