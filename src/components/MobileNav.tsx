@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import { User, Briefcase, Folder, Code2, Mail } from "lucide-react";
 
 const navItems = [
@@ -55,12 +54,10 @@ export default function MobileNav() {
               className="flex flex-col items-center justify-center gap-1 flex-1 h-full relative"
             >
               {isActive && (
-                <motion.div
-                  layoutId="mobile-nav-pill"
+                <div
                   className="absolute top-0 inset-x-4 h-[1.5px] rounded-full bg-cyan-400"
-                  transition={{ type: "spring", stiffness: 500, damping: 35 }}
-                />
-              )}
+                  style={{ opacity: 1, transition: "opacity 0.15s ease" }}
+                />)}
               <Icon
                 size={20}
                 style={{

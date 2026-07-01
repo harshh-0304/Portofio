@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -70,6 +70,13 @@ export const metadata: Metadata = {
     },
   },
   category: "technology",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#030A0E",
 };
 
 const GA_MEASUREMENT_ID = "G-7HMY8VCM6N";

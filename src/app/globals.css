@@ -58,6 +58,8 @@
   html {
     scroll-behavior: smooth;
     color-scheme: dark;
+    /* Respect notch / Dynamic Island on iPhones */
+    padding-top: env(safe-area-inset-top, 0px);
   }
 
   body {
@@ -65,6 +67,10 @@
     color: var(--foreground);
     font-family: var(--font-geist-sans), system-ui, sans-serif;
     overflow-x: hidden;
+    /* Safe area for home indicator */
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
   }
 
   ::-webkit-scrollbar {
@@ -355,6 +361,25 @@
 /* Smooth momentum scrolling on iOS */
 body {
   -webkit-overflow-scrolling: touch;
+}
+
+/* ── Mobile performance — kill all infinite CSS animations ── */
+@media (max-width: 1023px) {
+  .scan-line,
+  .hud-grid,
+  .text-flicker {
+    animation: none !important;
+  }
+
+  /* Keep hud-card snappy — no CSS transition fighting Framer */
+  .hud-card {
+    transition: none !important;
+  }
+
+  /* Native scroll momentum */
+  main {
+    overscroll-behavior-y: contain;
+  }
 }
 
 /* Reduce motion for accessibility */
