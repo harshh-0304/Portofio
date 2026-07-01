@@ -5,11 +5,11 @@ import { motion } from "framer-motion";
 import { User, Briefcase, Folder, Code2, Mail } from "lucide-react";
 
 const navItems = [
-  { id: "profile",    label: "Profile",  Icon: User,     sectionId: "section-profile" },
-  { id: "experience", label: "Work",     Icon: Briefcase,sectionId: "section-experience" },
-  { id: "projects",   label: "Projects", Icon: Folder,   sectionId: "section-projects" },
-  { id: "skills",     label: "Skills",   Icon: Code2,    sectionId: "section-skills" },
-  { id: "contact",    label: "Contact",  Icon: Mail,     sectionId: "section-contact" },
+  { id: "profile",    label: "Profile",  Icon: User,      sectionId: "section-profile" },
+  { id: "experience", label: "Work",     Icon: Briefcase, sectionId: "section-experience" },
+  { id: "projects",   label: "Projects", Icon: Folder,    sectionId: "section-projects" },
+  { id: "skills",     label: "Skills",   Icon: Code2,     sectionId: "section-skills" },
+  { id: "contact",    label: "Contact",  Icon: Mail,      sectionId: "section-contact" },
 ];
 
 export default function MobileNav() {
@@ -37,8 +37,8 @@ export default function MobileNav() {
     <nav
       className="fixed bottom-0 left-0 right-0 z-50 md:hidden"
       style={{
-        background: "rgba(3,10,14,0.94)",
-        borderTop: "1px solid rgba(0,212,255,0.12)",
+        background: "rgba(3,10,14,0.97)",
+        borderTop: "1px solid rgba(0,212,255,0.08)",
         backdropFilter: "blur(24px)",
         WebkitBackdropFilter: "blur(24px)",
         paddingBottom: "env(safe-area-inset-bottom, 0px)",
@@ -57,25 +57,24 @@ export default function MobileNav() {
               {isActive && (
                 <motion.div
                   layoutId="mobile-nav-pill"
-                  className="absolute top-0 inset-x-3 h-[2px] rounded-full"
-                  style={{
-                    background: "linear-gradient(90deg, transparent, #00D4FF 40%, #00D4FF 60%, transparent)",
-                    boxShadow: "0 0 10px rgba(0,212,255,0.9)",
-                  }}
+                  className="absolute top-0 inset-x-4 h-[1.5px] rounded-full bg-cyan-400"
                   transition={{ type: "spring", stiffness: 500, damping: 35 }}
                 />
               )}
               <Icon
-                size={22}
-                className="transition-colors duration-200"
+                size={20}
                 style={{
-                  color: isActive ? "#00D4FF" : "rgba(0,212,255,0.28)",
-                  filter: isActive ? "drop-shadow(0 0 5px rgba(0,212,255,0.7))" : "none",
+                  color: isActive ? "#00D4FF" : "rgba(255,255,255,0.22)",
+                  transition: "color 0.2s ease",
                 }}
               />
               <span
-                className="text-[9px] font-mono tracking-widest uppercase"
-                style={{ color: isActive ? "#00D4FF" : "rgba(0,212,255,0.22)" }}
+                className="text-[10px] font-sans"
+                style={{
+                  color: isActive ? "#00D4FF" : "rgba(255,255,255,0.28)",
+                  fontWeight: isActive ? 500 : 400,
+                  transition: "color 0.2s ease",
+                }}
               >
                 {label}
               </span>

@@ -14,6 +14,10 @@ import ContactTerminal from "./sections/ContactTerminal";
 import CommandPalette from "./CommandPalette";
 import MobileNav from "./MobileNav";
 
+/** Subtle hairline divider — mobile only, creates section flow */
+function SectionDivider() {
+  return <div className="section-divider lg:hidden" aria-hidden="true" />;
+}
 
 const sections: Record<string, string> = {
   profile: "section-profile",
@@ -109,18 +113,22 @@ export default function MainDashboard() {
         <div id="section-profile">
           <HeroProfile />
         </div>
+        <SectionDivider />
         <div id="section-overview">
           <SystemOverview />
         </div>
         <div id="section-experience">
           <ExperienceDatabase />
         </div>
+        <SectionDivider />
         <div id="section-projects">
           <ProjectArchive />
         </div>
+        <SectionDivider />
         <div id="section-skills">
           <SkillMatrix />
         </div>
+        <SectionDivider />
         <div id="section-education">
           <Education />
         </div>
@@ -130,6 +138,7 @@ export default function MainDashboard() {
         <div id="section-github">
           <GitHubStats />
         </div>
+        <SectionDivider />
         <div id="section-contact">
           <ContactTerminal />
         </div>

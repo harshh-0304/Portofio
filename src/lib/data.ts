@@ -316,13 +316,13 @@ export const currentOperations = {
 };
 
 export const bootLines = [
-  { text: "INITIALIZING HARSH OS...", delay: 0 },
-  { text: "LOADING ENGINEER PROFILE...", delay: 500 },
-  { text: "SCANNING EXPERIENCE DATABASE...", delay: 1050 },
-  { text: "CONNECTING PROJECT ARCHIVE...", delay: 1600 },
-  { text: "LOADING SKILL MATRIX...", delay: 2100 },
-  { text: "ANALYZING GITHUB REPOSITORIES...", delay: 2600 },
-  { text: "ESTABLISHING SECURE CONNECTION...", delay: 3100 },
-  { text: "SYSTEM READY", delay: 3600 },
-  { text: "WELCOME, HARSH JADAV", delay: 4000 },
+  { text: "INITIALIZING HARSH OS...",       delay: 0 },
+  { text: "LOADING ENGINEER PROFILE...",    delay: 120 },
+  { text: "SCANNING EXPERIENCE DATABASE...",delay: 260 },
+  { text: "CONNECTING PROJECT ARCHIVE...",  delay: 400 },
+  { text: "LOADING SKILL MATRIX...",        delay: 530 },
+  { text: "ANALYZING GITHUB REPOSITORIES...",delay: 660 },
+  { text: "ESTABLISHING SECURE CONNECTION...",delay: 790 },
+  { text: "SYSTEM READY",                  delay: 900 },
+  { text: "WELCOME, HARSH JADAV",          delay: 1000 },
 ];

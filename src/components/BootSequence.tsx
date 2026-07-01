@@ -19,11 +19,11 @@ export default function BootSequence({ onComplete }: Props) {
   useEffect(() => {
     if (skipped) return;
 
-    // Phase 1: scan photo for 1.8s, then start booting
+    // Phase 1: scan photo for 0.7s, then start booting
     const scanTimer = setTimeout(() => {
       setScanComplete(true);
       setPhase("booting");
-    }, 1800);
+    }, 700);
 
     return () => clearTimeout(scanTimer);
   }, [skipped]);
@@ -42,11 +42,11 @@ export default function BootSequence({ onComplete }: Props) {
       );
     });
 
-    // Complete after last line + 0.6s pause
+    // Complete after last line + 0.3s pause
     timers.push(
       setTimeout(() => {
         setPhase("complete");
-      }, bootLines[bootLines.length - 1].delay + 600)
+      }, bootLines[bootLines.length - 1].delay + 300)
     );
 
     return () => timers.forEach(clearTimeout);
@@ -57,7 +57,7 @@ export default function BootSequence({ onComplete }: Props) {
 
     const timer = setTimeout(() => {
       onComplete();
-    }, 800);
+    }, 500);
 
     return () => clearTimeout(timer);
   }, [phase, onComplete, skipped]);

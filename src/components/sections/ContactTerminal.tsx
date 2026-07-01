@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   GitBranch,
@@ -11,6 +10,7 @@ import {
   Send,
   ChevronRight,
 } from "lucide-react";
+import { useState } from "react";
 import { profile } from "@/lib/data";
 
 const links = [
@@ -86,34 +86,37 @@ export default function ContactTerminal() {
   };
 
   return (
-    <section className="py-16 md:py-24 px-4">
+    <section className="py-12 md:py-24 px-5">
       <div className="max-w-6xl mx-auto">
+
         {/* Section header */}
         <motion.div
-          className="mb-12"
+          className="mb-8 md:mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="flex items-center gap-3 mb-3">
+          <div className="hidden md:flex items-center gap-3 mb-3">
             <div className="h-px flex-1 max-w-[60px] bg-gradient-to-r from-transparent to-cyan-500/50" />
-            <span className="text-xs font-mono text-cyan-500/50 tracking-[0.3em]">
-              SECTION 06
-            </span>
+            <span className="text-xs font-mono text-cyan-500/50 tracking-[0.3em]">SECTION 06</span>
             <div className="h-px flex-1 bg-cyan-500/20" />
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold font-mono neon-cyan">
-            CONTACT TERMINAL
+          <p className="mobile-section-label md:hidden mb-2">Contact</p>
+          <h2 className="text-2xl md:text-4xl font-bold font-mono neon-cyan">
+            <span className="md:hidden">Get in Touch</span>
+            <span className="hidden md:inline">CONTACT TERMINAL</span>
           </h2>
-          <p className="text-cyan-500/40 font-mono text-sm mt-2 tracking-widest">
+          <p className="hidden md:block text-cyan-500/40 font-mono text-sm mt-2 tracking-widest">
             ESTABLISH SECURE COMMUNICATION CHANNEL
           </p>
+          <p className="md:hidden text-sm text-white/35 mt-1">Open to full-time and contract roles</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* ── MOBILE: large touch buttons (md:hidden) ── */}
-          <div className="md:hidden space-y-3">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+
+          {/* ── MOBILE: clean touch-friendly links ── */}
+          <div className="md:hidden space-y-2.5">
             {links.map((link, i) => {
               const Icon = link.icon;
               return (
@@ -122,52 +125,45 @@ export default function ContactTerminal() {
                   href={link.href}
                   target={link.download ? undefined : "_blank"}
                   rel="noopener noreferrer"
-                  download={link.download}
-                  onClick={() => handleCommand(link.command)}
-                  initial={{ opacity: 0, y: 12 }}
+                  download={link.download ? "Harsh_Jadav_Resume.pdf" : undefined}
+                  initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.08 }}
-                  className="flex items-center gap-4 p-5 rounded-2xl w-full min-h-[72px] active:scale-[0.98] transition-transform"
+                  transition={{ duration: 0.35, delay: i * 0.07 }}
+                  className="flex items-center gap-4 p-4 rounded-xl w-full active:scale-[0.98] transition-transform"
                   style={{
-                    background: `${link.color}08`,
-                    border: `1px solid ${link.color}30`,
+                    background: "rgba(255,255,255,0.03)",
+                    border: "1px solid rgba(255,255,255,0.07)",
                   }}
-                  whileTap={{ scale: 0.97 }}
                 >
                   <div
-                    className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0"
-                    style={{ background: `${link.color}15`, border: `1px solid ${link.color}25` }}
+                    className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
+                    style={{ background: `${link.color}12`, border: `1px solid ${link.color}20` }}
                   >
-                    <Icon size={26} style={{ color: link.color }} />
+                    <Icon size={20} style={{ color: link.color }} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="font-mono font-bold text-base tracking-wider" style={{ color: link.color }}>
-                      {link.label.toUpperCase()}
-                    </div>
-                    <div className="text-xs font-mono text-cyan-500/40 mt-0.5 truncate">{link.sub}</div>
+                    <div className="text-sm font-sans font-semibold text-white/80">{link.label}</div>
+                    <div className="text-xs text-white/35 mt-0.5 truncate font-sans">{link.sub}</div>
                   </div>
-                  <ChevronRight size={20} style={{ color: `${link.color}50` }} />
+                  <ChevronRight size={16} className="text-white/20 shrink-0" />
                 </motion.a>
               );
             })}
 
-            {/* Availability banner */}
+            {/* Availability — static, no pulse */}
             <motion.div
-              className="p-5 rounded-2xl"
-              style={{ background: "rgba(0,255,136,0.05)", border: "1px solid rgba(0,255,136,0.22)" }}
+              className="flex items-center gap-3 p-4 rounded-xl mt-2"
+              style={{ background: "rgba(0,255,136,0.04)", border: "1px solid rgba(0,255,136,0.14)" }}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-              animate={{ boxShadow: ["0 0 0px rgba(0,255,136,0)", "0 0 20px rgba(0,255,136,0.1)", "0 0 0px rgba(0,255,136,0)"] }}
+              transition={{ delay: 0.35 }}
             >
-              <div className="flex items-center gap-3">
-                <motion.div className="w-3 h-3 rounded-full bg-green-400" animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1.5, repeat: Infinity }} />
-                <div>
-                  <div className="text-base font-mono font-bold text-green-400 tracking-wider">AVAILABLE FOR OPPORTUNITIES</div>
-                  <div className="text-xs font-mono text-green-400/40 mt-0.5 tracking-widest">OPEN TO FULL-TIME / CONTRACT ROLES</div>
-                </div>
+              <div className="w-2 h-2 rounded-full bg-green-400 shrink-0" />
+              <div>
+                <div className="text-sm font-sans font-semibold text-green-400">Available for opportunities</div>
+                <div className="text-xs text-green-400/45 mt-0.5 font-sans">Open to full-time & contract roles</div>
               </div>
             </motion.div>
           </div>
@@ -200,12 +196,8 @@ export default function ContactTerminal() {
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   className="flex items-center gap-4 p-4 rounded-xl relative overflow-hidden group"
                   style={{
-                    background: isHov
-                      ? `${link.color}08`
-                      : "rgba(0,212,255,0.02)",
-                    border: isHov
-                      ? `1px solid ${link.color}40`
-                      : "1px solid rgba(0,212,255,0.1)",
+                    background: isHov ? `${link.color}08` : "rgba(0,212,255,0.02)",
+                    border: isHov ? `1px solid ${link.color}40` : "1px solid rgba(0,212,255,0.1)",
                     boxShadow: isHov ? `0 0 20px ${link.color}15` : "none",
                     transition: "all 0.3s ease",
                   }}
@@ -214,26 +206,16 @@ export default function ContactTerminal() {
                 >
                   <div
                     className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-all"
-                    style={{
-                      background: `${link.color}15`,
-                      border: `1px solid ${link.color}25`,
-                    }}
+                    style={{ background: `${link.color}15`, border: `1px solid ${link.color}25` }}
                   >
                     <Icon size={22} style={{ color: link.color }} />
                   </div>
-
                   <div className="flex-1 min-w-0">
-                    <div
-                      className="font-mono font-bold text-sm tracking-wider"
-                      style={{ color: link.color }}
-                    >
+                    <div className="font-mono font-bold text-sm tracking-wider" style={{ color: link.color }}>
                       {link.label.toUpperCase()}
                     </div>
-                    <div className="text-xs font-mono text-cyan-500/40 mt-0.5 truncate">
-                      {link.sub}
-                    </div>
+                    <div className="text-xs font-mono text-cyan-500/40 mt-0.5 truncate">{link.sub}</div>
                   </div>
-
                   <div className="flex items-center gap-2">
                     <span className="text-xs font-mono text-cyan-500/20 hidden sm:block tracking-widest">
                       {link.command}
@@ -245,7 +227,7 @@ export default function ContactTerminal() {
                     />
                   </div>
 
-                  {/* Scan on hover */}
+                  {/* Scan on hover — desktop only */}
                   {isHov && (
                     <motion.div
                       className="absolute top-0 bottom-0 w-0.5"
@@ -261,21 +243,11 @@ export default function ContactTerminal() {
             {/* Availability banner */}
             <motion.div
               className="p-4 rounded-xl"
-              style={{
-                background: "rgba(0,255,136,0.04)",
-                border: "1px solid rgba(0,255,136,0.2)",
-              }}
+              style={{ background: "rgba(0,255,136,0.04)", border: "1px solid rgba(0,255,136,0.2)" }}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.5 }}
-              animate={{
-                boxShadow: [
-                  "0 0 0px rgba(0,255,136,0)",
-                  "0 0 20px rgba(0,255,136,0.08)",
-                  "0 0 0px rgba(0,255,136,0)",
-                ],
-              }}
             >
               <div className="flex items-center gap-3">
                 <motion.div
@@ -298,10 +270,7 @@ export default function ContactTerminal() {
           {/* Terminal — desktop only */}
           <motion.div
             className="hidden md:block rounded-xl overflow-hidden"
-            style={{
-              background: "rgba(0,0,0,0.7)",
-              border: "1px solid rgba(0,212,255,0.2)",
-            }}
+            style={{ background: "rgba(0,0,0,0.7)", border: "1px solid rgba(0,212,255,0.2)" }}
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -365,17 +334,15 @@ export default function ContactTerminal() {
 
         {/* Footer */}
         <motion.div
-          className="mt-16 pt-8 border-t border-cyan-500/10 text-center"
+          className="mt-16 pt-8 border-t border-white/5 text-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
         >
-          <div className="text-xs font-mono text-cyan-500/25 tracking-[0.3em]">
-            JARVIS // HARSH JADAV PERSONAL COMMAND CENTER // v4.2.1
-          </div>
-          <div className="text-xs font-mono text-cyan-500/15 mt-1 tracking-widest">
-            BUILT WITH NEXT.JS · TYPESCRIPT · TAILWINDCSS · FRAMER MOTION
+          <div className="text-xs text-white/20">© 2025 Harsh Jadav</div>
+          <div className="text-[11px] text-white/12 mt-1">
+            Built with Next.js · TypeScript · Framer Motion
           </div>
         </motion.div>
       </div>
