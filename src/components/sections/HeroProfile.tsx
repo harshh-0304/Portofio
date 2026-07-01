@@ -32,14 +32,43 @@ export default function HeroProfile() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.5 }}
         >
-          {/* Avatar — clean, no spinning rings */}
-          <div className="relative shrink-0">
-            <div className="w-16 h-16 rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(0,212,255,0.2)" }}>
+          {/* Avatar — animated rings & scan line */}
+          <div className="relative shrink-0 w-16 h-16">
+            {/* Slow ring */}
+            <motion.div
+              className="absolute inset-[-6px] rounded-full border border-cyan-500/20"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            />
+            {/* Fast dashed ring */}
+            <motion.div
+              className="absolute inset-[-2px] rounded-full border border-dashed border-cyan-500/35"
+              animate={{ rotate: -360 }}
+              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+            />
+            {/* Glow ring */}
+            <motion.div
+              className="absolute inset-[-2px] rounded-full"
+              style={{
+                boxShadow: "0 0 10px rgba(0,212,255,0.3)",
+              }}
+              animate={{ opacity: [0.5, 1, 0.5] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
+            <div className="relative w-16 h-16 rounded-full overflow-hidden border border-cyan-500/50">
               <Image src={profile.avatar} alt="Harsh Jadav" fill className="object-cover" priority />
+              {/* Scan line */}
+              <motion.div
+                className="absolute left-0 right-0 h-[1px] bg-cyan-400"
+                style={{ boxShadow: "0 0 4px rgba(0,212,255,0.6)" }}
+                animate={{ top: ["0%", "100%", "0%"] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              />
             </div>
-            {/* Online dot — static, no pulse */}
+            {/* Online dot */}
             <div
-              className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-green-400 border-2 border-[#030A0E]"
+              className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-green-400 border-2 border-[#030A0E]"
+              style={{ boxShadow: "0 0 8px rgba(0,255,136,0.6)" }}
             />
           </div>
 
@@ -57,15 +86,25 @@ export default function HeroProfile() {
           </div>
         </motion.div>
 
-        {/* Availability — single clean pill, no animation */}
+        {/* Availability — glowing, pulsing pill */}
         <motion.div
-          className="flex items-center gap-2 mb-6 self-start"
+          className="flex items-center gap-2 mb-6 self-start px-3 py-1.5 rounded-full"
+          style={{
+            background: "rgba(0, 255, 136, 0.05)",
+            border: "1px solid rgba(0, 255, 136, 0.2)",
+            boxShadow: "0 0 10px rgba(0, 255, 136, 0.1)",
+          }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
         >
-          <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
-          <span className="text-xs font-mono text-green-400 tracking-wide">
+          <motion.div
+            className="w-1.5 h-1.5 rounded-full bg-green-400"
+            style={{ boxShadow: "0 0 6px rgba(0,255,136,0.8)" }}
+            animate={{ opacity: [1, 0.3, 1] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+          />
+          <span className="text-[10px] font-mono text-green-400 tracking-[0.1em] neon-green uppercase">
             Available for opportunities
           </span>
         </motion.div>

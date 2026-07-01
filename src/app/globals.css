@@ -272,13 +272,6 @@
     0 0 21px rgba(0, 212, 255, 0.3);
 }
 
-/* Mobile: no glow on headings — color only */
-@media (max-width: 1023px) {
-  .neon-cyan {
-    text-shadow: none;
-  }
-}
-
 .neon-green {
   color: #00FF88;
   text-shadow:
@@ -363,10 +356,9 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
-/* ── Mobile performance — kill all infinite CSS animations ── */
+/* ── Mobile performance — kill intensive animations ── */
 @media (max-width: 1023px) {
   .scan-line,
-  .hud-grid,
   .text-flicker {
     animation: none !important;
   }

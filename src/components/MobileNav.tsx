@@ -4,11 +4,11 @@ import { useState, useEffect } from "react";
 import { User, Briefcase, Folder, Code2, Mail } from "lucide-react";
 
 const navItems = [
-  { id: "profile",    label: "Profile",  Icon: User,      sectionId: "section-profile" },
-  { id: "experience", label: "Work",     Icon: Briefcase, sectionId: "section-experience" },
-  { id: "projects",   label: "Projects", Icon: Folder,    sectionId: "section-projects" },
-  { id: "skills",     label: "Skills",   Icon: Code2,     sectionId: "section-skills" },
-  { id: "contact",    label: "Contact",  Icon: Mail,      sectionId: "section-contact" },
+  { id: "profile",    label: "PROFILE",  Icon: User,      sectionId: "section-profile" },
+  { id: "experience", label: "WORK",     Icon: Briefcase, sectionId: "section-experience" },
+  { id: "projects",   label: "PROJECTS", Icon: Folder,    sectionId: "section-projects" },
+  { id: "skills",     label: "SKILLS",   Icon: Code2,     sectionId: "section-skills" },
+  { id: "contact",    label: "CONTACT",  Icon: Mail,      sectionId: "section-contact" },
 ];
 
 export default function MobileNav() {
@@ -56,20 +56,21 @@ export default function MobileNav() {
               {isActive && (
                 <div
                   className="absolute top-0 inset-x-4 h-[1.5px] rounded-full bg-cyan-400"
-                  style={{ opacity: 1, transition: "opacity 0.15s ease" }}
+                  style={{ opacity: 1, boxShadow: "0 0 8px rgba(0,212,255,0.6)", transition: "opacity 0.15s ease" }}
                 />)}
               <Icon
                 size={20}
                 style={{
                   color: isActive ? "#00D4FF" : "rgba(255,255,255,0.22)",
-                  transition: "color 0.2s ease",
+                  filter: isActive ? "drop-shadow(0 0 8px rgba(0,212,255,0.5))" : "none",
+                  transition: "all 0.2s ease",
                 }}
               />
               <span
-                className="text-[10px] font-sans"
+                className="text-[9px] font-mono tracking-widest"
                 style={{
                   color: isActive ? "#00D4FF" : "rgba(255,255,255,0.28)",
-                  fontWeight: isActive ? 500 : 400,
+                  fontWeight: isActive ? 600 : 400,
                   transition: "color 0.2s ease",
                 }}
               >
